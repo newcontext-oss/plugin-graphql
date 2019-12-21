@@ -240,7 +240,12 @@ export default class QueryBuilder {
       });
 
       if (!first) {
-        if (!signature && filter && Context.getInstance().adapter.getArgumentMode() === ArgumentMode.TYPE) returnValue = `filter: { ${returnValue} }`;
+        if (
+          !signature &&
+          filter &&
+          Context.getInstance().adapter.getArgumentMode() === ArgumentMode.TYPE
+        )
+          returnValue = `filter: { ${returnValue} }`;
         returnValue = `(${returnValue})`;
       }
     }
@@ -356,6 +361,9 @@ export default class QueryBuilder {
     model.getRelations().forEach((field: Relation, name: string) => {
       let relatedModel: Model = Model.getRelatedModel(field)!;
 
+      console.log(field);
+      console.log(relatedModel);
+
       // We will ignore the field, when it's already in the path. Means: When it's already queried. However there are
       // cases where the model will have a relationship to itself. For example a nested category strucure where the
       // category model has a parent: belongsTo(Category). So we also check if the model references itself. If this is
@@ -364,6 +372,7 @@ export default class QueryBuilder {
         path.slice(0).reverse(),
         (p: string) => p === relatedModel.singularName
       ).length;
+
       const ignore = referencesItSelf
         ? referencesItSelf > 5
         : path.includes(relatedModel.singularName);
