@@ -26,7 +26,7 @@ export default class Context {
 
   /**
    * PluginComponents collection of Vuex-ORM
-   * @type {Components}
+   * @type {PluginComponents}
    */
   public readonly components: PluginComponents;
 
@@ -127,7 +127,11 @@ export default class Context {
 
   /**
    * This is called only once and creates a new instance of the Context.
+<<<<<<< HEAD
    * @param {PluginComponents} components The Vuex-ORM PluginComponents collection
+=======
+   * @param {PluginComponents} components The Vuex-ORM Components collection
+>>>>>>> 310cea9c29218f8903ab7a375af38dc334fe3d91
    * @param {Options} options The options passed to VuexORM.install
    * @returns {Context}
    */

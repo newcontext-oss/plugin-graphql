@@ -49,14 +49,23 @@ describe("Action", () => {
             id: 1,
             name: "Charlie Brown",
             profile: {
+              id: 1,
               age: 8,
               email: "charlie@peanuts.com",
-              id: 1,
               sex: true
             },
             profileId: 1
           },
-          tags: [{ id: 1, name: "GraphQL" }, { id: 2, name: "Ruby" }],
+          tags: [
+            {
+              id: 1,
+              name: "GraphQL"
+            },
+            {
+              id: 2,
+              name: "Ruby"
+            }
+          ],
           authorId: 1
         },
 

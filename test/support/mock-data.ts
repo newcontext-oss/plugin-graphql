@@ -14,7 +14,7 @@ export class User extends ORMModel {
 
   static fields(): Fields {
     return {
-      id: this.increment(),
+      id: this.uid(),
       name: this.string(""),
       profileId: this.number(0),
       posts: this.hasMany(Post, "authorId"),
@@ -30,7 +30,7 @@ export class Profile extends ORMModel {
 
   static fields(): Fields {
     return {
-      id: this.increment(),
+      id: this.uid(),
       email: this.string(""),
       age: this.number(0),
       sex: this.boolean(true),
@@ -45,7 +45,7 @@ export class Video extends ORMModel {
 
   static fields(): Fields {
     return {
-      id: this.increment(),
+      id: this.uid(),
       content: this.string(""),
       title: this.string(""),
       authorId: this.number(0),
@@ -65,7 +65,7 @@ export class Post extends ORMModel {
 
   static fields(): Fields {
     return {
-      id: this.increment(),
+      id: this.uid(),
       content: this.string(""),
       title: this.string(""),
       authorId: this.number(0),
@@ -83,11 +83,10 @@ export class Comment extends ORMModel {
 
   static fields(): Fields {
     return {
-      id: this.increment(),
+      id: this.uid(),
       content: this.string(""),
       authorId: this.number(0),
       author: this.belongsTo(User, "authorId"),
-
       subjectId: this.number(0),
       subjectType: this.string("")
     };
@@ -96,7 +95,6 @@ export class Comment extends ORMModel {
 
 export class TariffTariffOption extends ORMModel {
   static entity = "tariffTariffOptions";
-
   static primaryKey = ["tariffUuid", "tariffOptionId"];
 
   static fields(): Fields {
@@ -110,7 +108,7 @@ export class TariffTariffOption extends ORMModel {
 export class Tariff extends ORMModel {
   static entity = "tariffs";
   static eagerLoad = ["tariffOptions"];
-  static primaryKey = ["uuid"];
+  static primaryKey = "uuid";
 
   static fields(): Fields {
     return {
@@ -120,7 +118,12 @@ export class Tariff extends ORMModel {
       tariffType: this.string(""),
       slug: this.string(""),
 
-      tariffOptions: this.belongsToMany(TariffOption, TariffTariffOption, "uuid", "tariffOptionId")
+      tariffOptions: this.belongsToMany(
+        TariffOption,
+        TariffTariffOption,
+        "tariffUuid",
+        "tariffOptionId"
+      )
     };
   }
 }
@@ -131,11 +134,11 @@ export class TariffOption extends ORMModel {
 
   static fields(): Fields {
     return {
-      id: this.increment(),
+      id: this.uid(),
       name: this.string(""),
       description: this.string(""),
 
-      tariffs: this.belongsToMany(Tariff, TariffTariffOption, "tariffOptionId", "uuid")
+      tariffs: this.belongsToMany(Tariff, TariffTariffOption, "tariffOptionId", "tariffUuid")
     };
   }
 }
@@ -145,7 +148,7 @@ export class Category extends ORMModel {
 
   static fields(): Fields {
     return {
-      id: this.increment(),
+      id: this.uid(),
       name: this.string(""),
 
       parentId: this.number(0),
@@ -159,7 +162,7 @@ export class Taggable extends ORMModel {
 
   static fields(): Fields {
     return {
-      id: this.increment(),
+      id: this.uid(),
       tagId: this.number(0),
       subjectId: this.number(0),
       subjectType: this.string("")
@@ -172,7 +175,7 @@ export class Tag extends ORMModel {
 
   static fields(): Fields {
     return {
-      id: this.increment(),
+      id: this.uid(),
       name: this.string("")
     };
   }
