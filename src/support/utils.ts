@@ -133,7 +133,7 @@ export function removeSymbols(input: any) {
 export function toNumber(input: string | number | null): number | string {
   if (input === null) return 0;
 
-  if (typeof input === "string" && input.startsWith("$uid")) {
+  if (typeof input === "string" && parseInt(input) === NaN) {
     return input;
   }
 
