@@ -16,7 +16,7 @@ const userResult = {
   users: [
     {
       id: 42,
-      $id: 42,
+      $id: "42",
       $isPersisted: true,
       name: "Charlie Brown",
       profileId: 0,
@@ -67,7 +67,7 @@ describe("TestUtils", () => {
       users: [
         {
           id: 8,
-          $id: 8,
+          $id: "8",
           $isPersisted: true,
           name: "Snoopy",
           profileId: 0,
@@ -77,7 +77,7 @@ describe("TestUtils", () => {
         },
         {
           id: 42,
-          $id: 42,
+          $id: "42",
           $isPersisted: true,
           name: "Charlie Brown",
           profileId: 0,
@@ -165,6 +165,7 @@ describe("TestUtils", () => {
     }, true);
 
     expect(request).toEqual(null);
+
     expect(result).toEqual(userResult);
   });
 
@@ -204,12 +205,11 @@ describe("TestUtils", () => {
 
     expect(request).toEqual(null);
 
-    expect(result).toEqual({
+    expect(result).toMatchObject({
       posts: [
         {
           id: 4,
-          $id: 4,
-          $isPersisted: true,
+          $id: "4",
           content: "Test content",
           title: "Test title",
           authorId: 0,
@@ -321,9 +321,10 @@ describe("TestUtils", () => {
   describe("clearORMStore", () => {
     it("cleans the store", async () => {
       await Post.create({ data: { name: "test" } });
-      expect(Post.find(1)).not.toEqual(null);
+      const post: Data = Post.query().last()! as Data;
+      expect(Post.find(post.id)).not.toEqual(null);
       await clearORMStore();
-      expect(Post.find(1)).toEqual(null);
+      expect(Post.find(post.id)).toEqual(null);
     });
   });
 });

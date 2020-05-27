@@ -2,7 +2,7 @@ import { Model as ORMModel, Relation } from "@vuex-orm/core";
 import { Field, PatchedModel } from "../support/interfaces";
 import Context from "../common/context";
 import { Mock, MockOptions } from "../test-utils";
-import { pluralize, singularize, pick, isEqual } from "../support/utils";
+import { pluralize, singularize, pick, isEqual, toNumber } from "../support/utils";
 
 /**
  * Wrapper around a Vuex-ORM model with some useful methods.
@@ -256,14 +256,14 @@ export default class Model {
 
   /**
    * Returns a record of this model with the given ID.
-   * @param {number} id
+   * @param {number|string} id
    * @returns {any}
    */
-  public getRecordWithId(id: number) {
+  public getRecordWithId(id: number | string) {
     return this.baseModel
       .query()
       .withAllRecursive()
-      .where("id", id)
+      .where("id", toNumber(id))
       .first();
   }
 

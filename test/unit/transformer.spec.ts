@@ -19,7 +19,7 @@ describe("Transformer", () => {
     test("transforms models to a useful data hashmap", async () => {
       // @ts-ignore
       await Video.fetch(1);
-      const video = context.getModel("video").getRecordWithId(1)!;
+      const video = context.getModel("video").getRecordWithId("1")!;
       const transformedData = Transformer.transformOutgoingData(
         context.getModel("video"),
         video,
@@ -62,7 +62,7 @@ describe("Transformer", () => {
               tariffOptions: {
                 nodes: [
                   {
-                    id: "1",
+                    id: 1,
                     name: "Foo Bar 1",
                     description: "Very foo, much more bar"
                   }
@@ -78,7 +78,7 @@ describe("Transformer", () => {
               tariffOptions: {
                 nodes: [
                   {
-                    id: "1",
+                    id: 1,
                     name: "Foo Bar 1",
                     description: "Very foo, much more bar"
                   }
@@ -94,7 +94,7 @@ describe("Transformer", () => {
               tariffOptions: {
                 nodes: [
                   {
-                    id: "1",
+                    id: 1,
                     name: "Foo Bar 1",
                     description: "Very foo, much more bar"
                   }
@@ -161,24 +161,24 @@ describe("Transformer", () => {
         posts: {
           nodes: [
             {
-              id: "1",
+              id: 1,
               content: "example content",
               title: "example title",
               author: {
-                id: "15",
+                id: 15,
                 name: "Charly Brown"
               },
-              otherId: "4894.35",
+              otherId: 4894.35,
               comments: {
                 nodes: [
                   {
-                    id: "42",
+                    id: 42,
                     content: "Works!",
                     author: {
-                      id: "14",
+                      id: 14,
                       name: "Peppermint Patty"
                     },
-                    subjectId: "1",
+                    subjectId: 1,
                     subjectType: "Post"
                   }
                 ]
@@ -238,7 +238,7 @@ describe("Transformer", () => {
           tariffOptions: {
             nodes: [
               {
-                id: "1",
+                id: 1,
                 name: "Foo Bar 1",
                 description: "Very foo, much more bar"
               }
@@ -289,7 +289,7 @@ describe("Transformer", () => {
                   edges: [
                     {
                       node: {
-                        id: "1",
+                        id: 1,
                         name: "Foo Bar 1",
                         description: "Very foo, much more bar"
                       }
@@ -309,7 +309,7 @@ describe("Transformer", () => {
                   edges: [
                     {
                       node: {
-                        id: "1",
+                        id: 1,
                         name: "Foo Bar 1",
                         description: "Very foo, much more bar"
                       }
@@ -329,7 +329,7 @@ describe("Transformer", () => {
                   edges: [
                     {
                       node: {
-                        id: "1",
+                        id: 1,
                         name: "Foo Bar 1",
                         description: "Very foo, much more bar"
                       }
@@ -399,25 +399,25 @@ describe("Transformer", () => {
           edges: [
             {
               node: {
-                id: "1",
+                id: 1,
                 content: "example content",
                 title: "example title",
                 author: {
-                  id: "15",
+                  id: 15,
                   name: "Charly Brown"
                 },
-                otherId: "4894.35",
+                otherId: 4894.35,
                 comments: {
                   edges: [
                     {
                       node: {
-                        id: "42",
+                        id: 42,
                         content: "Works!",
                         author: {
-                          id: "14",
+                          id: 14,
                           name: "Peppermint Patty"
                         },
-                        subjectId: "1",
+                        subjectId: 1,
                         subjectType: "Post"
                       }
                     }
