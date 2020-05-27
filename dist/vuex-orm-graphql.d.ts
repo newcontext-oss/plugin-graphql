@@ -7,7 +7,7 @@ import { PluginComponents } from "@vuex-orm/core/lib/plugins/use";
 export default class VuexORMGraphQL {
     /**
      * @constructor
-     * @param {PluginComponents} components The Vuex-ORM Components collection
+     * @param {PluginComponents} components The Vuex-ORM PluginComponents collection
      * @param {Options} options The options passed to VuexORM.install
      */
     constructor(components: PluginComponents, options: Options);

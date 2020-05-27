@@ -13,7 +13,7 @@ export default class VuexORMGraphQLPlugin implements Plugin {
     /**
      * This is called, when VuexORM.install(VuexOrmGraphQL, options) is called.
      *
-     * @param {PluginComponents} components The Vuex-ORM Components collection
+     * @param {PluginComponents} components The Vuex-ORM PluginComponents collection
      * @param {Options} options The options passed to VuexORM.install
      * @returns {VuexORMGraphQL}
      */
